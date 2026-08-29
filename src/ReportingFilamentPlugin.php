@@ -1,0 +1,31 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Liberu\Billing\Reporting\Filament;
+
+use Filament\Contracts\Plugin;
+use Filament\Panel;
+use Filament\Actions\Action;
+use Liberu\Billing\Reporting\Filament\Resources\MetricSnapshotResource;
+use Liberu\Billing\Reporting\Filament\Resources\ReportingMetricResource;
+
+final class ReportingFilamentPlugin implements Plugin
+{
+    public static function make(): self
+    {
+        return new self();
+    }
+
+    public function getId(): string
+    {
+        return 'module-billing-reporting-filament';
+    }
+
+    public function register(Panel $panel): void
+    {
+        $panel->resources([MetricSnapshotResource::class, ReportingMetricResource::class]);
+    }
+
+    public function boot(Panel $panel): void {}
+}
